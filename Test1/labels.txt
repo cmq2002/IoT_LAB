@@ -1,0 +1,3 @@
+0 MaskOn
+1 MaskOff
+2 NotFound
