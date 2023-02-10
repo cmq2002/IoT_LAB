@@ -3,6 +3,7 @@ import time
 import random
 from Adafruit_IO import MQTTClient
 from videoDect import *
+from uart import *
 
 AIO_FEED_IDs = ["button1", "button2"]
 AIO_USERNAME = "quang_cao2002"
@@ -38,25 +39,28 @@ counter_ai = 5
 ai_result = ""
 previous_result = ""
 while True:
-    counter -= 1
-    if counter <= 0:
-        counter = 10
-        #TODO
-        print ("Random data is publishing ...")
-        if sensor_type == 0:
-            print ("Temperature ...")
-            temp = random.randint(20, 30)
-            client.publish("sensor1", temp)
-        elif sensor_type == 1:
-            print ("Humidity ...")
-            humid = random.randint(20, 50)
-            client.publish("sensor2", humid)
-        elif sensor_type == 2:
-            print ("Gas Concentration ...")
-            gas = round(random.uniform(0, 2.5),2)
-            client.publish("sensor3", gas)
-        sensor_type = (sensor_type + 1) % 3
+
+    # LAB1: Send random data
+    # counter -= 1
+    # if counter <= 0:
+    #     counter = 10
+    #     #TODO
+    #     print ("Random data is publishing ...")
+    #     if sensor_type == 0:
+    #         print ("Temperature ...")
+    #         temp = random.randint(20, 30)
+    #         client.publish("sensor1", temp)
+    #     elif sensor_type == 1:
+    #         print ("Humidity ...")
+    #         humid = random.randint(20, 50)
+    #         client.publish("sensor2", humid)
+    #     elif sensor_type == 2:
+    #         print ("Gas Concentration ...")
+    #         gas = round(random.uniform(0, 2.5),2)
+    #         client.publish("sensor3", gas)
+    #     sensor_type = (sensor_type + 1) % 3
     
+    #LAB2: Integrate GG techable machine and read data from sensor
     counter_ai -= 1
     if counter_ai <= 0:
         counter_ai = 5
@@ -68,5 +72,7 @@ while True:
         ai_result = image_detector()
         if previous_result != ai_result:
             client.publish("ai", ai_result)
+    
+    readSerial(client)
     time.sleep(1)
     pass
