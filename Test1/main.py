@@ -24,6 +24,16 @@ def disconnected(client):
 
 def message(client , feed_id , payload):
     print("Value Received: " + payload + ", FeedID: " + feed_id)
+    if feed_id == "button1":
+        if payload == "0":
+            writeData(1)
+        else:
+            writeData(2)
+    if feed_id == "button2":
+        if payload == "0":
+            writeData(3)
+        else:
+            writeData(4)
 
 client = MQTTClient(AIO_USERNAME , AIO_KEY)
 client.on_connect = connected
@@ -35,7 +45,7 @@ client.loop_background()
 
 counter = 10
 sensor_type = 0
-counter_ai = 5
+counter_ai = 8
 ai_result = ""
 previous_result = ""
 while True:
@@ -60,10 +70,10 @@ while True:
     #         client.publish("sensor3", gas)
     #     sensor_type = (sensor_type + 1) % 3
     
-    #LAB2: Integrate GG techable machine and read data from sensor
+    #LAB2: Integrate GG techable machine
     counter_ai -= 1
     if counter_ai <= 0:
-        counter_ai = 5
+        counter_ai = 8
         # Print result to console
         print ("AI Result: ")
         image_detector()
@@ -72,7 +82,10 @@ while True:
         ai_result = image_detector()
         if previous_result != ai_result:
             client.publish("ai", ai_result)
-    
+    #LAB3: Read data from sensor
     readSerial(client)
+
+    #LAB4: Send cmd from sever to devices
+    #Implement in function message
     time.sleep(1)
     pass
