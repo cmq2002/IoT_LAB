@@ -7,7 +7,7 @@ from uart import *
 
 AIO_FEED_IDs = ["button1", "button2"]
 AIO_USERNAME = "quang_cao2002"
-# AIO_KEY = "aio_SgOD79eo2vwblPtJWStbEp8KkqXF"
+AIO_KEY = "aio_SgOD79eo2vwblPtJWStbEp8KkqXF"
 
 def connected(client):
     print("Connected ...")
