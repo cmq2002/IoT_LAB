@@ -14,7 +14,7 @@ def getPort():
     return "COM8"
 
 if getPort() != "None":
-    ser = serial.Serial( port=getPort(), baudrate=115200)
+    ser = serial.Serial(port=getPort(), baudrate=115200)
     print (ser)
 
 mess = ""

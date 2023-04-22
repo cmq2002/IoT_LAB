@@ -71,17 +71,18 @@ while True:
     #     sensor_type = (sensor_type + 1) % 3
     
     #LAB2: Integrate GG techable machine
-    counter_ai -= 1
-    if counter_ai <= 0:
-        counter_ai = 8
-        # Print result to console
-        print ("AI Result: ")
-        image_detector()
-        # Only publish to server in case values are different
-        previous_result = ai_result
-        ai_result = image_detector()
-        if previous_result != ai_result:
-            client.publish("ai", ai_result)
+    # counter_ai -= 1
+    # if counter_ai <= 0:
+    #     counter_ai = 8
+    #     # Print result to console
+    #     print ("AI Result: ")
+    #     image_detector()
+    #     # Only publish to server in case values are different
+    #     previous_result = ai_result
+    #     ai_result = image_detector()
+    #     if previous_result != ai_result:
+    #         client.publish("ai", ai_result)
+    
     #LAB3: Read data from sensor
     readSerial(client)
 
